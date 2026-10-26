@@ -1,0 +1,868 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   MITS INDOOR CAMPUS NAVIGATION
+   Global Theme + Premium Interaction System
+========================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+
+  body {
+    @apply antialiased;
+
+    background-color: #F8F1F6;
+    color: #241820;
+
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
+
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+
+  html.dark body {
+    background-color: #160A11;
+    color: #FFF5FA;
+  }
+
+  /* Better text selection */
+  ::selection {
+    background: rgba(194, 24, 91, 0.25);
+    color: #241820;
+  }
+
+  html.dark ::selection {
+    background: rgba(194, 24, 91, 0.4);
+    color: #FFF5FA;
+  }
+
+  /* Accessible keyboard focus */
+  :focus-visible {
+    outline: 2px solid #C2185B;
+    outline-offset: 3px;
+  }
+
+  html.dark :focus-visible {
+    outline-color: #E05A8D;
+  }
+}
+
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #F3E7EF;
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #D49AB5;
+  border-radius: 999px;
+  transition: background-color 200ms ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #C2185B;
+}
+
+html.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: #211019;
+}
+
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #6B304B;
+}
+
+html.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #C2185B;
+}
+
+
+/* =========================================================
+   PREMIUM CARD HOVER
+   Use class: premium-card
+========================================================= */
+
+.premium-card {
+  position: relative;
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 300ms ease,
+    border-color 300ms ease,
+    background-color 300ms ease;
+  will-change: transform;
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(194, 24, 91, 0.38);
+  box-shadow:
+    0 16px 40px rgba(45, 20, 32, 0.10),
+    0 0 0 1px rgba(194, 24, 91, 0.05);
+}
+
+html.dark .premium-card:hover {
+  border-color: rgba(194, 24, 91, 0.45);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(194, 24, 91, 0.08);
+}
+
+
+/* =========================================================
+   PREMIUM GLOW CARD
+   Use class: glow-card
+========================================================= */
+
+.glow-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 300ms ease,
+    box-shadow 350ms ease;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(194, 24, 91, 0.18),
+    rgba(99, 102, 241, 0.18),
+    transparent 80%
+  );
+
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.glow-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 18px 45px rgba(45, 20, 32, 0.12),
+    0 0 28px rgba(194, 24, 91, 0.08);
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+html.dark .glow-card:hover {
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.42),
+    0 0 35px rgba(194, 24, 91, 0.12);
+}
+
+
+/* =========================================================
+   BUTTON INTERACTION
+========================================================= */
+
+.premium-button {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 200ms ease,
+    box-shadow 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+
+.premium-button::after {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: left 550ms ease;
+
+  pointer-events: none;
+}
+
+.premium-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(194, 24, 91, 0.20);
+}
+
+.premium-button:hover::after {
+  left: 140%;
+}
+
+.premium-button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+
+/* =========================================================
+   ICON HOVER
+========================================================= */
+
+.premium-icon {
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 250ms ease,
+    background-color 250ms ease;
+}
+
+.group:hover .premium-icon {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+
+/* =========================================================
+   INTERACTIVE ROW
+   Useful for location / search results
+========================================================= */
+
+.interactive-row {
+  position: relative;
+
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.interactive-row:hover {
+  transform: translateX(4px);
+  background-color: rgba(194, 24, 91, 0.055);
+  border-color: rgba(194, 24, 91, 0.22);
+}
+
+html.dark .interactive-row:hover {
+  background-color: rgba(194, 24, 91, 0.09);
+}
+
+
+/* =========================================================
+   NAVIGATION / ROUTE HIGHLIGHT
+========================================================= */
+
+.route-highlight {
+  position: relative;
+  transition:
+    background-color 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease;
+}
+
+.route-highlight:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.45);
+
+  box-shadow:
+    0 10px 28px rgba(99, 102, 241, 0.10);
+}
+
+
+/* =========================================================
+   IMAGE / DEVELOPER PHOTO
+========================================================= */
+
+.premium-photo {
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 400ms ease,
+    box-shadow 400ms ease;
+}
+
+.premium-photo:hover {
+  transform: scale(1.08);
+  filter: saturate(1.08) brightness(1.04);
+
+  box-shadow:
+    0 12px 35px rgba(194, 24, 91, 0.22);
+}
+
+
+/* =========================================================
+   LINK HOVER
+========================================================= */
+
+.premium-link {
+  position: relative;
+  transition:
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.premium-link::after {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+
+  width: 100%;
+  height: 1.5px;
+
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform 250ms ease;
+}
+
+.premium-link:hover {
+  transform: translateY(-1px);
+}
+
+.premium-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* =========================================================
+   SOFT REVEAL ANIMATION
+========================================================= */
+
+@keyframes softReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-soft-reveal {
+  animation: softReveal 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+/* =========================================================
+   FLOATING ANIMATION
+========================================================= */
+
+@keyframes gentleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentleFloat 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   GLOW PULSE
+========================================================= */
+
+@keyframes softGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(194, 24, 91, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(194, 24, 91, 0.12);
+  }
+}
+
+.animate-soft-glow {
+  animation: softGlow 2.8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   ROUTE DASH ANIMATION
+========================================================= */
+
+@keyframes dashAnimation {
+  from {
+    stroke-dashoffset: 28;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-route-dash {
+  animation: dashAnimation 1.2s linear infinite;
+}
+
+
+/* =========================================================
+   MODAL ANIMATION
+========================================================= */
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-modal-enter {
+  animation: modalEnter 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   Accessibility
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .premium-card:hover,
+  .glow-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .interactive-row:hover {
+    transform: none;
+  }
+}
+/* =========================================================
+   AI BUILDING PHOTO BACKDROP + SIDE MAP CONTROL
+========================================================= */
+.mits-app-shell {
+  isolation: isolate;
+  background: #f8f1f6;
+}
+
+html.dark .mits-app-shell {
+  background: #160a11;
+}
+
+.mits-photo-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: #1b1018;
+}
+
+.mits-photo-slide {
+  position: absolute;
+  inset: -1.5%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.045);
+  filter: saturate(0.82);
+  transition: opacity 1.5s ease-in-out, transform 7s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.mits-photo-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mits-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(248, 241, 246, 0.91) 0%,
+    rgba(248, 241, 246, 0.78) 48%,
+    rgba(248, 241, 246, 0.65) 100%
+  );
+  backdrop-filter: blur(1px);
+}
+
+html.dark .mits-photo-overlay {
+  background: linear-gradient(
+    115deg,
+    rgba(22, 10, 17, 0.91) 0%,
+    rgba(22, 10, 17, 0.78) 48%,
+    rgba(22, 10, 17, 0.65) 100%
+  );
+}
+
+.mits-map-dock {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.mits-map-toggle {
+  background: linear-gradient(160deg, #c2185b 0%, #79113f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 12px 35px rgba(100, 12, 53, 0.34);
+}
+
+.mits-map-toggle:hover {
+  box-shadow: 0 16px 42px rgba(100, 12, 53, 0.46);
+}
+
+@media (max-width: 640px) {
+  .mits-photo-slide {
+    background-position: 55% center;
+  }
+
+  .mits-photo-overlay {
+    background: rgba(248, 241, 246, 0.91);
+  }
+
+  html.dark .mits-photo-overlay {
+    background: rgba(22, 10, 17, 0.91);
+  }
+
+  .mits-map-toggle {
+    border-radius: 14px;
+    padding: 12px 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mits-photo-slide,
+  .mits-map-toggle {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================
+   MITS SMART CAMPUS — MODERN INTERACTIVE DESIGN
+========================================================== */
+
+:root {
+  color-scheme: dark;
+  --mits-bg: #080d19;
+  --mits-panel: rgba(16, 24, 43, 0.88);
+  --mits-border: rgba(148, 163, 184, 0.15);
+  --mits-cyan: #67e8f9;
+  --mits-violet: #c4b5fd;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--mits-bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background: var(--mits-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+.mits-shell {
+  isolation: isolate;
+  position: relative;
+}
+
+.mits-panel {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--mits-border);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(19, 29, 50, 0.96),
+      rgba(12, 18, 33, 0.96)
+    );
+  box-shadow:
+    0 16px 45px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.mits-panel:hover {
+  border-color: rgba(103, 232, 249, 0.23);
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.2),
+    0 0 24px rgba(34, 211, 238, 0.025);
+}
+
+.mits-mini-card {
+  min-width: 0;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(16, 24, 43, 0.72);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.mits-mini-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(167, 139, 250, 0.3);
+  background: rgba(25, 35, 58, 0.9);
+}
+
+.mits-gradient-text {
+  color: #67e8f9;
+  background: linear-gradient(
+    90deg,
+    #67e8f9 0%,
+    #a5b4fc 48%,
+    #c4b5fd 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mits-primary-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.25);
+  background: linear-gradient(110deg, #0891b2, #4f46e5);
+  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.2);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    filter 200ms ease;
+}
+
+.mits-primary-button::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(
+    110deg,
+    transparent 15%,
+    rgba(255, 255, 255, 0.2) 48%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  transition: transform 500ms ease;
+}
+
+.mits-primary-button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 12px 34px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+.mits-primary-button:hover::before {
+  transform: translateX(120%);
+}
+
+.mits-primary-button:active {
+  transform: scale(0.98);
+}
+
+.mits-primary-button:focus-visible,
+.mits-shell button:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
+
+.mits-orb {
+  z-index: -1;
+  pointer-events: none;
+  animation: mits-orb-float 12s ease-in-out infinite alternate;
+}
+
+.mits-orb-two {
+  animation-delay: -5s;
+}
+
+.mits-compass-visual {
+  animation: mits-compass-float 6s ease-in-out infinite;
+}
+
+.mits-enter {
+  animation: mits-enter 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.mits-enter-delayed {
+  animation-delay: 120ms;
+}
+
+.mits-map-frame {
+  background:
+    radial-gradient(
+      ellipse at top left,
+      rgba(34, 211, 238, 0.06),
+      transparent 45%
+    ),
+    #0a1020;
+}
+
+.mits-map-frame > div {
+  max-width: 100%;
+}
+
+.mits-shell input,
+.mits-shell select,
+.mits-shell textarea {
+  max-width: 100%;
+}
+
+.mits-shell img,
+.mits-shell svg {
+  max-width: 100%;
+}
+
+.mits-shell button {
+  overflow-wrap: anywhere;
+}
+
+@keyframes mits-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mits-orb-float {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-18px, 24px, 0);
+  }
+}
+
+@keyframes mits-compass-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .mits-panel:hover,
+  .mits-mini-card:hover {
+    transform: none;
+  }
+
+  .mits-panel {
+    border-radius: 18px;
+  }
+
+  .mits-enter-delayed {
+    animation-delay: 60ms;
+  }
+
+  .mits-shell input,
+  .mits-shell select,
+  .mits-shell textarea {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
